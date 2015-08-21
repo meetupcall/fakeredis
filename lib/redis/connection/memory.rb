@@ -979,8 +979,11 @@ class Redis
         results = sort_keys(data[key])
         # Select just the keys unless we want scores
         results = results.map(&:first) unless with_scores
-        slice = results[start..stop]
-        slice ? slice.flatten.map(&:to_s) : []
+        puts "Key: #{key}"
+        puts "Start: #{start}"
+        puts "Stop: #{stop}"
+        puts "results: #{results.inspect}"
+        results[start..stop].flatten.map(&:to_s)
       end
 
       def zrevrange(key, start, stop, with_scores = nil)
